@@ -8,4 +8,8 @@
   #root {
     @apply h-full w-full;
   }
+
+  :root {
+    --background: #00d7ff;
+  }
 }

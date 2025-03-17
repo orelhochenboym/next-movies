@@ -13,14 +13,13 @@ export class MoviesService {
   private readonly logger = new Logger(MoviesService.name);
 
   findAll(): FindAllMoviesDto {
-    this.logger.log('findAll() executed successfully');
-
     const result = movieSchema.array().safeParse(movies);
 
     if (!result.success) {
       throw new InvalidMovieEntityException();
     }
 
+    this.logger.log('findAll() executed successfully');
     return result.data;
   }
 

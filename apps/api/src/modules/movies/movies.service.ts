@@ -1,15 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { movieSchema } from '@next-movies/types';
+import { FindAllMoviesDto, movieSchema } from '@next-movies/types';
 import movies from '../../assets/movies.json';
 
 @Injectable()
 export class MoviesService {
   private readonly logger = new Logger(MoviesService.name);
 
-  findAll() {
-    for (const movie of movies) {
-      movieSchema.parse(movie);
-    }
-    return movies;
+  findAll(): FindAllMoviesDto {
+    this.logger.log('findAll() executed successfully');
+    return movieSchema.array().parse(movies);
   }
 }

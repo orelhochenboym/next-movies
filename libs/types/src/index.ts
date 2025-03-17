@@ -1,1 +1,1 @@
-export * from './lib/movie.schema';
+export * from './lib/movies';

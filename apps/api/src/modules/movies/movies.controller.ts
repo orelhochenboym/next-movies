@@ -1,6 +1,6 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { MoviesService } from './movies.service';
-import { FindAllMoviesDto } from '@next-movies/types';
+import { FindAllMoviesDto, FindOneMovieDto } from '@next-movies/types';
 
 @Controller('movies')
 export class MoviesController {
@@ -12,7 +12,7 @@ export class MoviesController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number): FindOneMovieDto {
     return this.moviesService.findOne(id);
   }
 }

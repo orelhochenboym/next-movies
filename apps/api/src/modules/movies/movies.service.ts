@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import {
   FindAllMoviesDto,
-  FindOneMoviesDto,
+  FindOneMovieDto,
   movieSchema,
 } from '@next-movies/types';
 import movies from '../../assets/movies.json';
@@ -24,7 +24,7 @@ export class MoviesService {
     return result.data;
   }
 
-  findOne(id: number): FindOneMoviesDto {
+  findOne(id: number): FindOneMovieDto {
     const foundMovie = this.findAll().find((movie) => movie.id === id);
 
     if (!foundMovie) {

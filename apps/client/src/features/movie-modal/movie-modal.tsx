@@ -16,8 +16,8 @@ type Props = { movie: FindAllMoviesDto[number] };
 export const MovieModal: React.FC<Props> = ({ movie }) => {
   return (
     <Dialog>
-      <DialogTrigger tabIndex={-1} className="h-fit w-full">
-        <Button className="w-full">
+      <DialogTrigger tabIndex={-1} className="h-fit w-full" asChild>
+        <Button className="w-full" tabIndex={1}>
           Read more
           <img src={arrowRight} alt="Right Arrow" />
         </Button>
@@ -25,7 +25,7 @@ export const MovieModal: React.FC<Props> = ({ movie }) => {
       <DialogContent className="flex flex-col md:items-center md:justify-center md:gap-10 lg:flex-row">
         <MovieImage largeimage={movie.largeimage} title={movie.title} />
 
-        <div className="flex h-full w-full flex-col items-start justify-start gap-4 overflow-y-auto md:justify-between">
+        <div className="flex h-full w-full flex-col items-start justify-start gap-4 overflow-y-auto p-1 md:justify-between">
           <MovieInfo
             title={movie.title}
             synopsis={movie.synopsis}
@@ -33,11 +33,9 @@ export const MovieModal: React.FC<Props> = ({ movie }) => {
             runtime={movie.runtime}
           />
 
-          <DialogClose>
-            <Button className="h-11 w-full">
-              <img src={arrowLeft} alt="Left Arrow" />
-              Back to list
-            </Button>
+          <DialogClose className="h-11 w-full">
+            <img src={arrowLeft} alt="Left Arrow" />
+            Back to list
           </DialogClose>
         </div>
       </DialogContent>

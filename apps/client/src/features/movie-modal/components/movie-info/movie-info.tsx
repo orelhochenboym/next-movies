@@ -5,7 +5,7 @@ import {
   DialogTitle,
 } from '../../../../components/dialog';
 import parse from 'html-react-parser';
-import { Rating } from '../../../../components/movie-card/rating';
+import { Rating } from '../../../movie-card/rating';
 
 type Props = Pick<
   FindAllMoviesDto[number],

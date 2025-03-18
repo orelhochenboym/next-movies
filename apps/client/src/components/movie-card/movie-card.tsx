@@ -1,14 +1,17 @@
 import { FindAllMoviesDto } from '@next-movies/types';
 import { decodeHtml } from '../../utils/decode-html.util';
 import star from '../../assets/star.svg';
+import arrow from '../../assets/arrow.svg';
+import { Button } from '../button';
 
 type Props = { movie: FindAllMoviesDto[number] };
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
   return (
     <div className="flex h-full w-full flex-col justify-between gap-3 self-start">
-      <div>
+      <div className="flex flex-col gap-4 ">
         <img src={movie.image} alt={movie.title} className="h-96 w-64" />
+
         <h1 className="font-[Georgia] text-3xl">
           {decodeHtml(movie.title)} ({movie.released})
         </h1>
@@ -19,7 +22,11 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
           <img src={star} alt="Star Icon" className="aspect-square w-7" />
           <p className="text-2xl">{movie.rating}</p>
         </div>
-        <button className="rounded-full border border-black">Read more</button>
+
+        <Button>
+          Read more
+          <img src={arrow} alt="Right Arrow" />
+        </Button>
       </div>
     </div>
   );

@@ -14,11 +14,14 @@ export const RuntimeFilter: React.FC = () => {
       <Input
         value={filters.runtime}
         type="number"
+        id="runtime-input"
+        min="0"
         className="border border-black"
+        aria-label="Runtime in minutes"
         onChange={(e) => {
           dispatch(
             setFilters({
-              runtime: e.target.value !== '' ? parseInt(e.target.value) : 0,
+              runtime: e.target.value !== '' ? parseInt(e.target.value, 10) : 0,
             })
           );
         }}

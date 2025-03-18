@@ -3,7 +3,7 @@ import { FindAllMoviesDto, FindOneMovieDto } from '@next-movies/types';
 
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (builder) => ({
     findAllMovies: builder.query<FindAllMoviesDto, void>({
       query: () => 'movies',

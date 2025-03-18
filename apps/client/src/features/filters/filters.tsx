@@ -26,7 +26,7 @@ export const Filters: React.FC = () => {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const trigger = (
-    <Button className="aspect-square rounded-none border-none p-2">
+    <Button className="animate-in fade-in aspect-square rounded-none border-none p-2 delay-[3000ms] duration-700 ease-in-out">
       <SlidersHorizontal />
     </Button>
   );

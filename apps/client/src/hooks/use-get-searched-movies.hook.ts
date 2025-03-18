@@ -20,7 +20,7 @@ export const useGetSearchedMovies = () => {
     }
   }, [movies, searchValue]);
 
-  return filteredMovies.length === 0
+  return filteredMovies.length === 0 || searchValue === ''
     ? movies
     : filteredMovies.map((movie) => ({ ...movie.item }));
 };

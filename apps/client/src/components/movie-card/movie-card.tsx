@@ -1,3 +1,26 @@
-export const MovieCard: React.FC = () => {
-  return <div>Movie Card</div>;
+import { FindAllMoviesDto } from '@next-movies/types';
+import { decodeHtml } from '../../utils/decode-html.util';
+import star from '../../assets/star.svg';
+
+type Props = { movie: FindAllMoviesDto[number] };
+
+export const MovieCard: React.FC<Props> = ({ movie }) => {
+  return (
+    <div className="flex h-full w-full flex-col justify-between gap-3 self-start">
+      <div>
+        <img src={movie.image} alt={movie.title} className="h-96 w-64" />
+        <h1 className="font-[Georgia] text-3xl">
+          {decodeHtml(movie.title)} ({movie.released})
+        </h1>
+      </div>
+
+      <div className="flex h-fit w-full flex-col gap-3">
+        <div className="flex gap-2">
+          <img src={star} alt="Star Icon" className="aspect-square w-7" />
+          <p className="text-2xl">{movie.rating}</p>
+        </div>
+        <button className="rounded-full border border-black">Read more</button>
+      </div>
+    </div>
+  );
 };

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type MovieSearchState = { value: string };
+export type MovieSearchState = { value: string };
 
 const initialState: MovieSearchState = { value: '' };
 

@@ -1,8 +1,7 @@
 import { FindAllMoviesDto } from '@next-movies/types';
-import arrow from '../../assets/arrow.svg';
-import { Button } from '../button';
 import { Header } from './header';
 import { Rating } from './rating';
+import { MovieModal } from '../../features/movie-modal';
 
 type Props = { movie: FindAllMoviesDto[number] };
 
@@ -17,10 +16,7 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
       <div className="flex h-fit w-full flex-col gap-3">
         <Rating rating={movie.rating} />
 
-        <Button>
-          Read more
-          <img src={arrow} alt="Right Arrow" />
-        </Button>
+        <MovieModal movie={movie} />
       </div>
     </div>
   );

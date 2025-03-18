@@ -2,7 +2,7 @@ import icon from '../../assets/icon.svg';
 
 export const Footer: React.FC = () => {
   return (
-    <div className="bg-background-footer flex h-fit w-full flex-col items-center justify-center gap-4 py-8 font-[georgia] text-white">
+    <div className="bg-background-footer flex h-fit w-full flex-col items-center justify-center gap-4 py-8 font-[Georgia] text-white">
       <img src={icon} alt="Next Movies Icon" />
 
       <div className="flex h-fit w-fit flex-col items-center justify-center gap-4">

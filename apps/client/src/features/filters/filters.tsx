@@ -12,19 +12,22 @@ import {
 import { Button } from '../../components/button';
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from '../../components/drawer';
 import { SlidersHorizontal, X } from 'lucide-react';
+import { RatingFilter } from './components/rating-filter';
+import { RuntimeFilter } from './components/runtime-filter';
+import { ReleaseDateFilter } from './components/release-date-filter';
+import { TypeFilter } from './components/type-filter';
 
 export const Filters: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
+
   const trigger = (
     <Button className="animate-in fade-in aspect-square rounded-none border-none p-2 delay-[3000ms] duration-700 ease-in-out">
       <SlidersHorizontal />
@@ -48,11 +51,11 @@ export const Filters: React.FC = () => {
               Choose the filter to search movies by
             </DialogDescription>
           </DialogHeader>
-          <div className="flex h-full w-full flex-col items-start justify-center gap-8">
-            <div>Movie Or Series</div>
-            <div>Release Date</div>
-            <div>Rating</div>
-            <div>Runtime</div>
+          <div className="grid h-full w-full grid-cols-2 flex-col items-center justify-center gap-8 text-xl">
+            <TypeFilter />
+            <ReleaseDateFilter />
+            <RatingFilter />
+            <RuntimeFilter />
           </div>
         </DialogContent>
       </Dialog>
@@ -62,18 +65,20 @@ export const Filters: React.FC = () => {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="p-4">
         <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerTitle>Filters</DrawerTitle>
           <DrawerDescription>
-            Make changes to your profile here. Click save when you're done.
+            Choose the filter to search movies by
           </DrawerDescription>
         </DrawerHeader>
-        <DrawerFooter className="pt-2">
-          <DrawerClose asChild>
-            <Button>Close</Button>
-          </DrawerClose>
-        </DrawerFooter>
+
+        <div className="grid h-full w-full grid-cols-2 flex-col items-center justify-center gap-8 md:text-xl">
+          <TypeFilter />
+          <ReleaseDateFilter />
+          <RatingFilter />
+          <RuntimeFilter />
+        </div>
       </DrawerContent>
     </Drawer>
   );

@@ -22,6 +22,7 @@ export const MovieModal: React.FC<Props> = ({ movie }) => {
           <img src={arrowRight} alt="Right Arrow" />
         </Button>
       </DialogTrigger>
+
       <DialogContent className="flex flex-col md:items-center md:justify-center md:gap-10 lg:flex-row">
         <MovieImage largeimage={movie.largeimage} title={movie.title} />
 

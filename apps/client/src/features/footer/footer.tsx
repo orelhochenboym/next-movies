@@ -1,4 +1,5 @@
 import icon from '../../assets/icon.svg';
+import { SocialMedia } from './components/social-media';
 
 export const Footer: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ export const Footer: React.FC = () => {
           <p>Mon - Fri | 6:00am - 5:00pm PT</p>
         </div>
 
-        <div className="flex gap-4">Social Media</div>
+        <SocialMedia />
       </div>
     </div>
   );

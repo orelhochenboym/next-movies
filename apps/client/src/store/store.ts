@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
+import movieSearchReducer from './slices/movie-search.slice';
 import { api } from './services/api';
 
 export const store = configureStore({
-  reducer: { [api.reducerPath]: api.reducer },
+  reducer: { movieSearch: movieSearchReducer, [api.reducerPath]: api.reducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
 });

@@ -19,7 +19,7 @@ export const MovieSearch: React.FC = () => {
 
   return (
     <Input
-      className="animate-in slide-in-from-right-full border duration-700 ease-out xl:w-1/4"
+      className="animate-in slide-in-from-right-full w-full border duration-700 ease-out xl:w-1/4"
       placeholder="Search title"
       value={search}
       onChange={(e) => setSearch(e.target.value)}

@@ -9,11 +9,11 @@ type Props = { movie: FindAllMoviesDto[number] };
 export const MovieCard: React.FC<Props> = ({ movie }) => {
   return (
     <div className="flex h-full w-full flex-col justify-between gap-3 self-start">
-      <div className="flex flex-col gap-4 ">
+      <div className="flex flex-col gap-4">
         <img
           src={movie.image}
           alt={movie.title}
-          className="h-56 w-36 self-center md:h-96 md:w-64"
+          className="w-full self-center"
         />
 
         <h1 className="font-[Georgia] text-xl md:text-3xl">

@@ -1,19 +1,28 @@
-# Run the container with `docker run -p 3000:3000 -t api`.
-FROM docker.io/node:lts-alpine
-
-ENV HOST=0.0.0.0
-ENV PORT=3000
+FROM docker.io/node:lts-alpine AS builder
 
 WORKDIR /app
 
-RUN addgroup --system api && \
-    adduser --system -G api api
+COPY package.json package-lock.json ./
+RUN npm ci
 
-COPY apps/api/dist api/
-RUN chown -R api:api .
+COPY . . 
+RUN npx --yes nx build api
 
-RUN npm --prefix api --omit=dev -f install
+FROM docker.io/node:lts-alpine
+
+WORKDIR /app
+
+RUN addgroup --system api && adduser --system -G api api
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+COPY --from=builder /app/apps/api/dist ./api/
+
+RUN chown -R api:api . 
+
+USER api
 
 EXPOSE 3000
 
-CMD [ "node", "api" ]
+CMD ["node", "api"]

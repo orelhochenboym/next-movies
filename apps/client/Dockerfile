@@ -1,20 +1,27 @@
-FROM docker.io/nginx:latest
+FROM docker.io/node:lts-alpine AS builder
 
-COPY apps/client/dist /var/www
-COPY apps/client/nginx/nginx.conf /etc/nginx/nginx.conf 
-COPY apps/client/nginx/cors.conf /etc/nginx/cors.conf
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+RUN npx --yes nx build client
+
+FROM docker.io/nginx:latest
 
 WORKDIR /usr/share/nginx/html
 
-RUN touch /var/run/nginx.pid
-RUN chmod 777 /var/run/nginx.pid
-RUN chmod 777 /var/cache/nginx
+COPY --from=builder /app/apps/client/dist /var/www
+
+COPY apps/client/nginx/nginx.conf /etc/nginx/nginx.conf 
+COPY apps/client/nginx/cors.conf /etc/nginx/cors.conf
+
+RUN touch /var/run/nginx.pid \
+    && chmod 777 /var/run/nginx.pid \
+    && chmod 777 /var/cache/nginx \
+    && chmod -R 777 /var/www
 
 EXPOSE 4200
 
-RUN chmod 777 /usr/share/nginx/html
-RUN chmod 777 /var/www/*
-
-USER nginx
-
-CMD ["nginx","-g","daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
